@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<RootNamespace>Pulumi.AzureNextGen</RootNamespace>
+		<Version>0.4.0</Version>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Company />
+		<Product>Pulumi AzureNextGen Ambients</Product>
+		<Authors>Matt Wilkinson</Authors>
+		<Copyright>Matt Wilkinson 2020</Copyright>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageProjectUrl>https://github.com/matwilko/Pulumi.AzureNextGen.Ambient</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/matwilko/Pulumi.AzureNextGen.Ambient</RepositoryUrl>
+		<PackageReleaseNotes>Initial release</PackageReleaseNotes>
+		<PackageTags>pulumi azurenextgen</PackageTags>
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Remove="C:\Users\matth\.nuget\packages\pulumi.azurenextgen\0.2.8\contentFiles\any\netcoreapp3.1\version.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Pulumi.AzureNextGen" Version="0.4.0" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="LICENSE">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+</Project>
