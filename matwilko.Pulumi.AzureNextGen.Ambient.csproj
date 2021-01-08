@@ -21,11 +21,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Content Remove="C:\Users\matth\.nuget\packages\pulumi.azurenextgen\0.2.8\contentFiles\any\netcoreapp3.1\version.txt" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Pulumi.AzureNextGen" Version="0.4.0" />
+		<PackageReference Include="Pulumi.AzureNextGen" Version="0.4.0">
+			<ExcludeAssets>contentfiles</ExcludeAssets>
+		</PackageReference>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
