@@ -4,6 +4,7 @@
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<RootNamespace>Pulumi.AzureNextGen</RootNamespace>
 		<Version>0.4.0</Version>
+		<Nullable>enable</Nullable>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Company />
 		<Product>Pulumi AzureNextGen Ambients</Product>

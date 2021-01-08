@@ -20,7 +20,7 @@ namespace Pulumi.AzureNextGen
 			.Where(t => typeof(ResourceArgs).IsAssignableFrom(t))
 			.Select(t => (type: t, property: t.GetProperty("ResourceGroupName")))
 			.Where(info => info.property != null)
-			.ToImmutableDictionary(i => i.type, i => i.property);
+			.ToImmutableDictionary(i => i.type, i => i.property!);
 
 		public static PropertyInfo GetResourceGroupProperty(this ResourceArgs args) => ResourceGroupProperties.GetValueOrDefault(args.GetType());
 
@@ -28,7 +28,7 @@ namespace Pulumi.AzureNextGen
 			.Where(t => typeof(ResourceArgs).IsAssignableFrom(t))
 			.Select(t => (type: t, property: t.GetProperty("Location")))
 			.Where(info => info.property != null)
-			.ToImmutableDictionary(i => i.type, i => i.property);
+			.ToImmutableDictionary(i => i.type, i => i.property!);
 
 		public static PropertyInfo GetLocationProperty(this ResourceArgs args) => LocationProperties.GetValueOrDefault(args.GetType());
 
@@ -87,7 +87,7 @@ namespace Pulumi.AzureNextGen
 			.Distinct()
 			.Select(t => (type: t, resourceNameProp: TryGetResourceNameProperty(t)))
 			.Where(t => t.resourceNameProp != null)
-			.ToImmutableDictionary(t => t.type, t => t.resourceNameProp);
+			.ToImmutableDictionary(t => t.type, t => t.resourceNameProp!);
 
 		private static PropertyInfo? TryGetResourceNameProperty(Type type)
 		{
