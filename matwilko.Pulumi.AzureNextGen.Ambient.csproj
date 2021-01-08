@@ -9,7 +9,7 @@
 		<Company />
 		<Product>Pulumi AzureNextGen Ambients</Product>
 		<Authors>Matt Wilkinson</Authors>
-		<Copyright>Matt Wilkinson 2020</Copyright>
+		<Copyright>Matt Wilkinson 2021</Copyright>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageProjectUrl>https://github.com/matwilko/Pulumi.AzureNextGen.Ambient</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/matwilko/Pulumi.AzureNextGen.Ambient</RepositoryUrl>
