@@ -52,7 +52,7 @@ namespace Pulumi.AzureNextGen
 			
 			if (args.Options?.Provider != null)
 			{
-				Log.Info($"The Ambient Subscription `{ambientSubscription.SubscriptionId}` could not be applied as this resource already has a provider applied to it");
+				Log.Debug($"The Ambient Subscription `{ambientSubscription.SubscriptionId}` could not be applied as this resource already has a provider applied to it");
 				return null;
 			}
 			

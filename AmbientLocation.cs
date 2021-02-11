@@ -54,7 +54,7 @@ namespace Pulumi.AzureNextGen
 			var existingLocationValue = locationProperty.GetValue(args.Args);
 			if (existingLocationValue != null)
 			{
-				Log.Info("Location has already been manually specified on this resource, so the ambient location will not be applied");
+				Log.Debug("Location has already been manually specified on this resource, so the ambient location will not be applied");
 				return null;
 			}
 

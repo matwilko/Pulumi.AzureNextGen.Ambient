@@ -20,7 +20,7 @@
 			var existingName = nameProperty.GetValue(args.Args);
 			if (existingName != null)
 			{
-				Log.Info("Not applying auto-naming - a name is already manually specified");
+				Log.Debug("Not applying auto-naming - a name is already manually specified");
 				return null;
 			}
 

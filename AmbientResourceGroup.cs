@@ -52,17 +52,17 @@ namespace Pulumi.AzureNextGen
 
 			if (existingResourceGroupName != null && existingLocation != null)
 			{
-				Log.Info("Both ResourceGroupName and Location have been manually specified on this resource, so the ambient resource group will not be applied");
+				Log.Debug("Both ResourceGroupName and Location have been manually specified on this resource, so the ambient resource group will not be applied");
 				return null;
 			}
 			else if (existingResourceGroupName != null)
 			{
-				Log.Info("ResourceGroupName has already been manually specified on this resource, so the ambient resource group will not be applied");
+				Log.Debug("ResourceGroupName has already been manually specified on this resource, so the ambient resource group will not be applied");
 				return null;
 			}
 			else if (existingLocation != null)
 			{
-				Log.Info("Location has already been manually specified on this resource, so the ambient resource group will not be applied");
+				Log.Debug("Location has already been manually specified on this resource, so the ambient resource group will not be applied");
 				return null;
 			}
 
