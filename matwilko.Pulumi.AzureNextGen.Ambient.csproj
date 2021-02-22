@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<RootNamespace>Pulumi.AzureNextGen</RootNamespace>
-		<Version>0.6.0</Version>
+		<Version>0.6.1</Version>
 		<Nullable>enable</Nullable>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Company />
@@ -13,15 +13,16 @@
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageProjectUrl>https://github.com/matwilko/Pulumi.AzureNextGen.Ambient</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/matwilko/Pulumi.AzureNextGen.Ambient</RepositoryUrl>
-		<PackageReleaseNotes>Updated to Pulumi.AzureNextGen 0.6.0. Updated log messages to output as Debug to avoid noise when executing pulumi programs normally.</PackageReleaseNotes>
+		<PackageReleaseNotes>Updated to Pulumi.AzureNextGen 0.6.1. Added mitigation for pulumi#6358 when using ambient subscription.</PackageReleaseNotes>
 		<PackageTags>pulumi azurenextgen</PackageTags>
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+		<Description>Provides some helpers to allow specifying subscription/resource group for multiple resources easier</Description>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Pulumi.AzureNextGen" Version="0.6.0">
+		<PackageReference Include="Pulumi.AzureNextGen" Version="0.6.1">
 			<ExcludeAssets>contentfiles</ExcludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
