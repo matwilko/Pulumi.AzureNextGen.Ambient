@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
 using System.Threading;
+using static System.Environment;
 
 namespace Pulumi.AzureNextGen
 {
@@ -14,7 +17,7 @@ namespace Pulumi.AzureNextGen
 
 		public static AmbientSubscription? Current => Ambient.Value;
 
-		public AmbientSubscription(string subscriptionId)
+		public AmbientSubscription(string subscriptionId, bool disableArmsAuxiliaryMitigation = false)
 		{
 			if (subscriptionId == null)
 				throw new ArgumentNullException(nameof(subscriptionId));
@@ -33,10 +36,28 @@ namespace Pulumi.AzureNextGen
 			{
 				AzureNextGenProvider = ProviderCache.TryGetValue(subscriptionId, out var provider)
 					? provider
-					: ProviderCache[subscriptionId] = new Provider($"azurenextgen-ambientsubscription-{subscriptionId}", new ProviderArgs { SubscriptionId = SubscriptionId });
+					: ProviderCache[subscriptionId] = GetProvider(subscriptionId, disableArmsAuxiliaryMitigation);
 			}
 
 			Ambient.Value = this;
+		}
+
+		private static Provider GetProvider(string subscriptionId, bool disableArmsAuxiliaryMitigation)
+		{
+			// Mitigation for https://github.com/pulumi/pulumi/issues/6358
+			if (disableArmsAuxiliaryMitigation)
+			{
+				return new Provider($"azurenextgen-ambientsubscription-{subscriptionId}", new ProviderArgs { SubscriptionId = subscriptionId });
+			}
+			else
+			{
+				var auxiliaryTenantIds = (GetEnvironmentVariable("ARM_AUXILIARY_TENANT_IDS") ?? string.Empty)
+				                         .Split(';', StringSplitOptions.RemoveEmptyEntries)
+				                         .Select(id => id.Trim())
+				                         .ToImmutableArray();
+
+				return new Provider($"azurenextgen-ambientsubscription-{subscriptionId}", new ProviderArgs { SubscriptionId = subscriptionId, AuxiliaryTenantIds = auxiliaryTenantIds });
+			}
 		}
 
 		internal static ResourceTransformation TransformDelegate { get; } = Transform;
@@ -49,13 +70,13 @@ namespace Pulumi.AzureNextGen
 
 			if (!args.Resource.IsAzureNextGenResource() || args.Resource is Provider)
 				return null;
-			
+
 			if (args.Options?.Provider != null)
 			{
 				Log.Debug($"The Ambient Subscription `{ambientSubscription.SubscriptionId}` could not be applied as this resource already has a provider applied to it");
 				return null;
 			}
-			
+
 			var options = args.Options.CloneFor(args.Resource);
 			options.Provider = ambientSubscription.AzureNextGenProvider;
 			return new ResourceTransformationResult(args.Args, options);
